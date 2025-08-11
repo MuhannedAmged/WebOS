@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import StartMenu from "./components/ui/StartMenu";
 import Apps from "./components/ui/Apps";
 import TaskBar from "./components/ui/TaskBar";
@@ -11,11 +12,18 @@ import { useOptionsMenu } from "@/store/optionsMenu";
 import { useDateMenu } from "@/store/dateMenu";
 
 export default function Home() {
+  const [isHydrated, setIsHydrated] = useState(false);
+  const { hydrate, bg } = useChangeBg();
   const { isOpenStartMenu } = useStartMenu((state) => state);
   const { isOpenOptionsMenu } = useOptionsMenu((state) => state);
   const { isOpenDateMenu } = useDateMenu((state) => state);
 
-  const { bg } = useChangeBg();
+  useEffect(() => {
+    hydrate();
+    setIsHydrated(true);
+  }, []);
+
+  if (!isHydrated) return null; 
 
   return (
     <div

@@ -33,7 +33,7 @@ const OptionsMenu = () => {
               news[0]
             ) : (
               <>
-                {[0, 1, 2, 3, 4].map((item, index) => (
+                {[0, 1, 2, 3].map((item, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0 }}
