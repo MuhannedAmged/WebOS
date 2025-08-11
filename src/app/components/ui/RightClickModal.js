@@ -7,16 +7,15 @@ import { useArrayApps } from "@/store/arrayApps";
 import Terminal from "./apps/terminal/Terminal";
 
 const RightClickModal = ({ visible, position, onClose }) => {
+  const { arrayAppsOpenContext, setArrayAppsOpenContext } =
+    useAppsOpenContext();
+  const { arrayApps, addApp } = useArrayApps();
   if (!visible) return null;
 
   const style = {
     top: position.y,
     left: position.x,
   };
-
-  const { arrayAppsOpenContext, setArrayAppsOpenContext } =
-    useAppsOpenContext();
-  const { arrayApps, addApp } = useArrayApps();
 
   return (
     <motion.div

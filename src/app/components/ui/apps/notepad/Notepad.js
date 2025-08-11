@@ -46,14 +46,14 @@ const Notepad = () => {
     updateUndoRedoState();
   };
 
-  const updateUndoRedoState = () => {
+  const updateUndoRedoState = useCallback(() => {
     setCanUndo(undoStack.length > 0);
     setCanRedo(redoStack.length > 0);
-  };
+  }, [undoStack, redoStack]);
 
   useEffect(() => {
     updateUndoRedoState();
-  }, [undoStack, redoStack]);
+  }, [updateUndoRedoState]);
 
   const handleTextSelection = () => {
     if (textareaRef.current) {
